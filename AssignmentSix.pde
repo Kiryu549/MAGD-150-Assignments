@@ -9,7 +9,7 @@ boolean Trans = false;
 
 void setup() {
   size(1200, 800);
-  ayylmao = loadImage("ayy lmaaaaaoooooo.jpg");
+  ayylmao = loadImage("https://cloud.githubusercontent.com/assets/16229366/11695278/fa89523a-9e73-11e5-8a71-0cb14e179e7f.jpg");
 }
 
 void draw() {
