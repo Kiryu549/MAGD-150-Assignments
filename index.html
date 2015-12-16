@@ -2,14 +2,169 @@
   <header>
   <script src="https://raw.githubusercontent.com/processing-js/processing-js/v1.4.8/processing.js"></script>
   </header>
-  <h1>Your FINAL SKETCH Title</h1>
+  <h1>Galaga</h1>
   <script type="text/processing" data-processing-target="mycanvas-final">
   
-  <!-- Your FINAL SKETCH goes here -->
+  <!-- boolean win = false;
+boolean dank = false;
+PImage Galaga;
+PImage Space;
+
+
+Enemy myEnemy;
+Gun myGun;
+Ship myShip;
+void setup() {
+  size(1440, 1080);
+  background(0);
+
+  myShip = new Ship();
+  myGun = new Gun();
+  myEnemy = new Enemy();
+}
+
+void draw() {
+  if (dank == false) {
+    Galaga = loadImage("https://cloud.githubusercontent.com/assets/16229366/11832586/66d0e9ac-a37f-11e5-8023-6bbba3efaa9b.jpg");
+    image(Galaga, 0, 0);
+    textSize(65);
+    color(255);
+    text("Click anywhere to begin", 350, 875);
+  }
+  if (dank == true) {
+    Space = loadImage("https://cloud.githubusercontent.com/assets/16229366/11832598/7de651fe-a37f-11e5-82f9-ef07a0733c3d.jpg");
+    image(Space, 0, 0);
+    myGun.drawGun();
+    myShip.display();
+    myShip.move();
+
+    for (int e = 0; e <= myEnemy.enemySpawn.length - 1; e++) {
+      myEnemy.displayEnemy(e);
+    }
+    myEnemy.enemyMove();
+
+    if (myEnemy.collision) {
+      println("hit"); 
+      for (int e = 0; e <= 11; e++) {
+        myEnemy.enemySpawn[e][1] = 0;  
+        win = true;
+      }
+    } else {
+      println("miss");
+    }
+    if (win){
+      fill(0);
+     rect(0,0,width,height);
+     fill(255);
+     textSize(72);
+     text("Congratulations!",720,540);
+    }
+  }
+}
+
+void mousePressed() {
+  dank = true;
+}
+
+class Enemy {
+  int [][] enemySpawn = { {100, 255}, {200, 255}, {300, 255}, {400, 255}, {500, 255}, 
+                          {600, 255}, {700, 255}, {800, 255}, {900, 255}, {1000, 255}, 
+                          {1100, 255}, {1200, 255}, {1300, 255} };
+  int enemyY, enemyOffset;
+  boolean collision;
+
+  Enemy() {
+    enemyOffset = 40;
+  }
+
+  void displayEnemy(int e) {
+    fill(255, 0, 0, enemySpawn[e][1]);
+    rect(enemySpawn[e][0], enemyY, enemyOffset, enemyOffset);
+
+    checkForCollision(e);
+  }
+
+  void enemyMove() {
+    enemyY = enemyY + 10;
+
+    if (enemyY >= height + 20) {
+      enemyY = 0;
+    }
+  }
+
+  void checkForCollision(int e) {
+    if (myGun.bulletY <= enemyY + enemyOffset && myGun.bulletY >= enemyY) {
+      if (myGun.bulletX >= enemySpawn[e][0] && myGun.bulletX <= enemySpawn[e][0] + enemyOffset) {
+        collision = true;
+      }
+    } else {
+      collision = false;
+    }
+  }
+}
+
+class Gun{
+  float bulletX, bulletY, bulletOffset;
+  boolean gunFired;
+  
+  Gun(){
+    bulletOffset = 5;
+  }
+  
+  void drawGun(){
+    if(gunFired) {
+      bulletX = myShip.centerX + 30;
+      bulletY = myShip.centerY + 15;
+      gunFired = false;
+    }else{
+      bulletY = bulletY - 30;
+    }
+    
+    fill(255);
+    rect(bulletX, bulletY, bulletOffset, bulletOffset + 15);
+  }
+}
+
+class Ship {
+  PImage Ship;
+  int centerX, centerY;
+
+  Ship() {
+    centerX = 720;
+    centerY = 950;
+  }
+
+  void display() {
+    Ship = loadImage("https://cloud.githubusercontent.com/assets/16229366/11832612/bb1d5798-a37f-11e5-8cff-d32527a31602.png");
+    image(Ship, centerX, centerY);
+  }
+
+  void move() {
+    if (keyPressed) {
+      if (key == 'a') {
+        centerX = centerX - 15;
+
+        if (centerX <= 0) {
+          centerX = 15;
+        }
+      }
+      if (key == 'd') {
+        centerX = centerX + 15;
+        
+        if (centerX + 15 >= width) {
+          centerX = width - 60;
+        }
+      }
+      if (key == 's') {
+        myGun.gunFired = true;
+      }
+    }
+  }
+} -->
 
   </script>
   <canvas id="mycanvas-final"></canvas>
-  <p>Description: On my FINAL SKETCH ASSIGNMENT</p>
+  <p>Galaga recreation. Move the ship with A and D and shoot with S.</p>
         <br />
         <br />
   <h1>ayy lmao</h1>
@@ -82,46 +237,328 @@ void mousePressed() {
 
   </script>
   <canvas id="ayy_lmao"></canvas>
-  <p>Description:</p>
+  <p>Click mouse more ayy lmao</p>
         <br />
         <br />
-  <h1>Your Sketch2 Title</h1>
+  <h1>Final Destination</h1>
   <script type="text/processing" data-processing-target="mycanvas2">
   
-  <!-- Your sketch2 goes here -->
+  <!-- boolean dank = false;
+PImage FinalDestination;
+
+
+Fox myFox;
+void setup() {
+  size(640, 480);
+  myFox = new Fox();
+}
+
+void draw() {  
+  if (dank == false){
+  FinalDestination = loadImage("https://cloud.githubusercontent.com/assets/16229366/11832512/8daaaab4-a37e-11e5-9a68-adae756219ec.png");
+  image(FinalDestination,0,0);
+  myFox.display();
+  myFox.move();
+  }
+  if (dank == true) {
+    background(0,0,255);
+  textSize(50);
+  text("20XX", 340, 175);
+}
+}
+
+
+void mousePressed(){
+  dank = true;
+  
+}
+
+class Fox{
+  PImage fox;
+  int centerX,centerY;
+  
+  Fox(){
+   centerX = 340;
+   centerY = 175;
+  }
+  
+  void display(){
+   fox = loadImage("https://cloud.githubusercontent.com/assets/16229366/11832523/c0d8288a-a37e-11e5-8792-7f7f793d54e3.png");
+   image(fox,centerX,centerY);
+    
+  }
+  
+  void move(){
+   if(keyPressed){
+     if(key == 'a'){
+       centerX = centerX - 5;
+     }
+     if(key == 'd'){
+       centerX = centerX + 5;
+     }
+   }  
+  }
+} -->
 
   </script>
   <canvas id="mycanvas2"></canvas>
-  <p>Description:</p>
+  <p>Move Fox with A and D</p>
         <br />
         <br />
-  <h1>Your Sketch3 Title</h1>
+  <h1>Soccer</h1>
   <script type="text/processing" data-processing-target="mycanvas3">
   
-  <!-- Your sketch3 goes here -->
+  <!-- int posX = 500;
+int posY = height/2;
+int movementSize = 5;
+
+float gravity = 0.7;
+
+
+void setup(){
+  size(1150,720);
+}
+
+void draw(){
+  background(0,50,0);
+  println(posX);
+  
+  updateBall();
+  
+  noFill();
+  stroke(255);
+  rect(50,50,1050,625);
+  fill(0,50,0);
+  ellipse(575,360,150,150);
+  
+  line(575,50,575,675);
+  
+   ellipse(125,380,150,150);
+  
+  ellipse(1025,380,150,150);
+  
+  rect(50,225,100,300);
+  
+  rect(1000,225,100,300);
+  
+  rect(50,300,50,150);
+  
+  rect(1050,300,50,150);
+  
+  
+  
+}
+
+void updateBall(){
+  fill(255);
+  if(posX+25 >= width){
+    movementSize = movementSize * -1;
+  } else if (posX-25 <= 0){
+    movementSize = movementSize * -1;
+  }
+  posX = posX + movementSize;
+  ellipse(posX, posY, 50, 50);
+}
+  
+  
+  void keyPressed(){
+    fill(255);
+    textSize(48);
+    text("GOAL",300,50);
+  } -->
 
   </script>
   <canvas id="mycanvas3"></canvas>
-  <p>Description:</p>
+  <p>no interactivity</p>
         <br />
         <br />
-  <h1>Your Sketch4 Title</h1>
+  <h1>Smash Bros. Meme</h1>
   <script type="text/processing" data-processing-target="mycanvas4">
   
-  <!-- Your sketch4 goes here -->
+  <!-- void setup(){
+  size (1280,800);
+  background (0);
+  
+}
+
+void draw(){
+  
+  fill(255);
+  //rectangle
+  beginShape();
+  vertex(200,150);
+  vertex(200,700);
+  vertex(1100,700);
+  vertex(1100,150);
+  endShape();
+  textSize(48);
+  text("Oh, you're good at Super Smash Bros. Melee?",150,100);
+  textSize(34);
+  text("Please, tell me more about your tech skill and multi-shining capabilities.",50,750);
+  //"Fox Shine"
+  fill(255);
+  noStroke();
+  beginShape();
+  vertex(300,425);
+  vertex(300,500);
+  vertex(350,525);
+  vertex(400,500);
+  vertex(400,425);
+  vertex(350,400);
+  endShape();
+  //"Fox Shine Inner"
+  fill(255);
+  noStroke();
+  beginShape();
+  vertex(325,440);
+  vertex(325,485);
+  vertex(350,500);
+  vertex(375,485);
+  vertex(375,440);
+  vertex(350,425);
+  endShape();
+  
+  fill(0);
+  textSize(20);
+  text("The year is 20XX.",300,600);
+  textSize(15);
+  text("Everyone plays Fox at TAS levels of perfection. Because of this, the winner of a match depends solely on port priority.",225,625);
+text("The RPS metagame has evolved to ridiculous levels due to it being the only remaining factor to decide matches.",225,650);
+
+}
+
+void keyPressed(){
+  fill(0);
+  textSize(50);
+  text("20XX", 400,350);
+  
+  fill(0,255,210);
+  beginShape();
+  vertex(300,425);
+  vertex(300,500);
+  vertex(350,525);
+  vertex(400,500);
+  vertex(400,425);
+  vertex(350,400);
+  endShape();
+  
+  fill(255);
+  noStroke();
+  beginShape();
+  vertex(325,440);
+  vertex(325,485);
+  vertex(350,500);
+  vertex(375,485);
+  vertex(375,440);
+  vertex(350,425);
+  endShape();
+  
+  fill(0,255,210);
+  beginShape();
+  vertex(600,425);
+  vertex(600,500);
+  vertex(650,525);
+  vertex(700,500);
+  vertex(700,425);
+  vertex(650,400);
+  endShape();
+  
+  fill(255);
+  noStroke();
+  beginShape();
+  vertex(625,440);
+  vertex(625,485);
+  vertex(650,500);
+  vertex(675,485);
+  vertex(675,440);
+  vertex(650,425);
+  endShape();
+  
+  fill(0,255,210);
+  beginShape();
+  vertex(900,425);
+  vertex(900,500);
+  vertex(950,525);
+  vertex(1000,500);
+  vertex(1000,425);
+  vertex(950,400);
+  endShape();
+  
+  fill(255);
+  noStroke();
+  beginShape();
+  vertex(925,440);
+  vertex(925,485);
+  vertex(950,500);
+  vertex(975,485);
+  vertex(975,440);
+  vertex(950,425);
+  endShape();
+} -->
 
   </script>
   <canvas id="mycanvas4"></canvas>
-  <p>Description:</p>
+  <p>Mouse press for 20XX action</p>
         <br />
         <br />
-  <h1>Your Sketch5 Title</h1>
+  <h1>Ravioli Ravioli</h1>
   <script type="text/processing" data-processing-target="mycanvas5">
   
-  <!-- Your sketch5 goes here -->
+  <!-- boolean dank = false;
+
+class Ravioli {
+  int y;
+  PImage ravioli;
+
+  Ravioli() {
+    y = 0;
+  }
+  void display() {
+    ravioli = loadImage("https://cloud.githubusercontent.com/assets/16229366/11832453/e5cb21e8-a37d-11e5-9eb1-86f07dbb9cb6.jpg");
+    image(ravioli, 0, 0);
+  }
+}
+
+class Pocketoli {
+  int y;
+  PImage pocketoli;
+  
+  Pocketoli() {
+    y = 0;
+  }
+  void display() {
+    pocketoli = loadImage("https://cloud.githubusercontent.com/assets/16229366/11832485/3df23780-a37e-11e5-9487-8a9f4eeb5af0.jpg");
+    image(pocketoli,0,0);
+  }
+  
+}
+
+Ravioli myRavioli;
+Pocketoli myPocketoli;
+void setup() {
+  size(960, 960);
+  myRavioli = new Ravioli();
+  myPocketoli = new Pocketoli();
+}
+
+void draw() {
+  if (dank == false) {
+  myRavioli.display();
+  }
+  if (dank == true) {
+    myPocketoli.display();
+  }
+}
+void keyPressed(){
+  dank = true;
+  background(255);
+  fill(0);
+  textSize(65);
+  text("What's in the pocketoli?", 10, 800);
+} -->
 
   </script>
   <canvas id="mycanvas5"></canvas>
-  <p>Description:</p>
+  <p>Press any key for...</p>
   </body>
 </html>
